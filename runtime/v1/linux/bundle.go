@@ -189,10 +189,6 @@ func (b *bundle) Delete() error {
 	return errors.Wrapf(err, "Failed to remove both bundle and workdir locations: %v", err2)
 }
 
-func (b *bundle) legacyShimAddress(namespace string) string {
-	return filepath.Join(string(filepath.Separator), "containerd-shim", namespace, b.id, "shim.sock")
-}
-
 const socketRoot = "/run/containerd"
 
 func (b *bundle) shimAddress(namespace, socketPath string) string {
