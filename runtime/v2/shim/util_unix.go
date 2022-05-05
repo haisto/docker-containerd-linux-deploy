@@ -51,16 +51,7 @@ func getSysProcAttr() *syscall.SysProcAttr {
 // to ensure that they parent has a lower* score than the shim
 // if not already at the maximum OOM Score
 func AdjustOOMScore(pid int) error {
-	parent := os.Getppid()
-	score, err := sys.GetOOMScoreAdj(parent)
-	if err != nil {
-		return errors.Wrap(err, "get parent OOM score")
-	}
-	shimScore := score + 1
-	if err := sys.AdjustOOMScore(pid, shimScore); err != nil {
-		return errors.Wrap(err, "set shim OOM score")
-	}
-	return nil
+ 	return nil
 }
 
 const socketRoot = "/run/containerd"
